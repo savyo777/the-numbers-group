@@ -8,6 +8,6 @@ export default defineConfig({
   server: { port: 5190, host: true, open: false },
   build: {
     target: 'es2020',
-    rollupOptions: { output: { manualChunks: { motion: ['framer-motion', 'gsap'] } } },
+    rollupOptions: { output: { manualChunks: { motion: ['framer-motion', 'gsap'], three: ['three'] } } },
   },
 });

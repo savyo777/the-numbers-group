@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import Loader from './components/Loader';
 import Backdrop from './components/Backdrop';
+import LedgerScene from './components/LedgerScene';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import TrustBar from './components/TrustBar';
@@ -36,6 +37,7 @@ export default function App() {
     <div className="relative grain">
       <Loader />
       <Backdrop />
+      <LedgerScene />
       <motion.div style={{ scaleX }} className="fixed inset-x-0 top-0 z-[70] h-[3px] origin-left bg-gradient-to-r from-emerald via-emerald-light to-gold" />
       <Navbar />
       <main className="relative z-[2]">
