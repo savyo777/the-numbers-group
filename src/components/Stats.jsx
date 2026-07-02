@@ -10,11 +10,11 @@ function Stat({ s, i }) {
         <svg viewBox="0 0 100 100" className="h-40 w-40 -rotate-90">
           <defs>
             <linearGradient id={`ring${i}`} x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#34D6A6" />
-              <stop offset="100%" stopColor="#C9A96A" />
+              <stop offset="0%" stopColor="#1E5B4A" />
+              <stop offset="100%" stopColor="#A9822F" />
             </linearGradient>
           </defs>
-          <circle cx="50" cy="50" r="44" fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth="3" />
+          <circle cx="50" cy="50" r="44" fill="none" stroke="rgba(35,42,36,0.10)" strokeWidth="3" />
           <motion.circle
             cx="50" cy="50" r="44" fill="none" stroke={`url(#ring${i})`} strokeWidth="3" strokeLinecap="round"
             strokeDasharray="276"
@@ -22,7 +22,7 @@ function Stat({ s, i }) {
             whileInView={{ strokeDashoffset: 44 }}
             viewport={{ once: true }}
             transition={{ duration: 1.6, ease: [0.22, 0.7, 0.2, 1], delay: 0.1 * i }}
-            style={{ filter: 'drop-shadow(0 0 7px rgba(15,157,118,0.55))' }}
+            style={{ filter: 'drop-shadow(0 2px 4px rgba(30,91,74,0.25))' }}
           />
         </svg>
         <div className="absolute inset-0 grid place-items-center">

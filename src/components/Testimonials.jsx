@@ -29,7 +29,7 @@ export default function Testimonials() {
           </Reveal>
           <Reveal delay={0.1}>
             <div className="mt-5 inline-flex items-center gap-2 rounded-full glass px-4 py-2">
-              <span className="flex gap-0.5">{[...Array(5)].map((_, k) => <Star key={k} size={14} className="text-gold" fill="#C9A96A" strokeWidth={0} />)}</span>
+              <span className="flex gap-0.5">{[...Array(5)].map((_, k) => <Star key={k} size={14} className="text-gold" fill="#A9822F" strokeWidth={0} />)}</span>
               <span className="text-sm text-paper/80">{business.rating} · {business.reviews} verified Google reviews</span>
             </div>
           </Reveal>
@@ -41,7 +41,7 @@ export default function Testimonials() {
               initial={{ opacity: 0, x: dir * 48 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: dir * -48 }}
               transition={{ duration: 0.5, ease: EASE }}
               className="grad-border w-full rounded-[2rem] glass-strong p-9 text-center shadow-glass md:p-12">
-              <Quote className="mx-auto text-emerald-light" size={34} fill="#0F9D76" strokeWidth={0} />
+              <Quote className="mx-auto text-emerald-light" size={34} fill="#1E5B4A" strokeWidth={0} />
               <blockquote className="mt-6 font-display text-2xl font-medium leading-snug text-paper md:text-[1.7rem]">“{t.quote}”</blockquote>
               <figcaption className="mt-8 flex items-center justify-center gap-3">
                 <span className="grid h-11 w-11 place-items-center rounded-full bg-gradient-to-br from-emerald to-gold font-display text-sm font-semibold text-ink-900">{initials(t.name)}</span>

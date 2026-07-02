@@ -16,28 +16,28 @@ function BarsCompare() {
     <svg viewBox="0 0 320 190" className="w-full">
       {before.map((h, i) => (
         <g key={i}>
-          <motion.rect x={26 + i * 74} width="24" rx="5" fill="rgba(255,255,255,0.14)"
+          <motion.rect x={26 + i * 74} width="24" rx="5" fill="rgba(35,42,36,0.15)"
             initial={{ height: 0, y: 160 }} animate={{ height: h, y: 160 - h }} transition={{ duration: 0.8, ease: EASE, delay: i * 0.08 }} />
           <motion.rect x={54 + i * 74} width="24" rx="5" fill="url(#gEm)"
             initial={{ height: 0, y: 160 }} animate={{ height: after[i], y: 160 - after[i] }} transition={{ duration: 0.8, ease: EASE, delay: 0.1 + i * 0.08 }} />
         </g>
       ))}
-      <line x1="16" y1="160" x2="304" y2="160" stroke="rgba(255,255,255,0.15)" />
-      <text x="26" y="182" fill="rgba(245,248,246,0.4)" fontSize="10">Tax paid — self-filed vs. planned</text>
-      <defs><linearGradient id="gEm" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stopColor="#0B795B" /><stop offset="100%" stopColor="#34D6A6" /></linearGradient></defs>
+      <line x1="16" y1="160" x2="304" y2="160" stroke="rgba(35,42,36,0.15)" />
+      <text x="26" y="182" fill="rgba(35,42,36,0.45)" fontSize="10">Tax paid — self-filed vs. planned</text>
+      <defs><linearGradient id="gEm" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stopColor="#174A3C" /><stop offset="100%" stopColor="#2F6B57" /></linearGradient></defs>
     </svg>
   );
 }
 function LineUp() {
   return (
     <svg viewBox="0 0 320 190" className="w-full">
-      {[40, 80, 120].map((y) => <line key={y} x1="16" y1={y} x2="304" y2={y} stroke="rgba(255,255,255,0.06)" />)}
+      {[40, 80, 120].map((y) => <line key={y} x1="16" y1={y} x2="304" y2={y} stroke="rgba(35,42,36,0.08)" />)}
       <motion.path d="M20,150 C70,140 90,120 130,110 S 210,80 250,58 S 290,34 302,26"
-        fill="none" stroke="#34D6A6" strokeWidth="3" strokeLinecap="round"
+        fill="none" stroke="#1E5B4A" strokeWidth="3" strokeLinecap="round"
         initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.2, ease: EASE }} />
-      <motion.circle cx="302" cy="26" r="5" fill="#C9A96A" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1.1 }} />
-      <line x1="16" y1="160" x2="304" y2="160" stroke="rgba(255,255,255,0.15)" />
-      <text x="20" y="182" fill="rgba(245,248,246,0.4)" fontSize="10">Net worth projection with a plan</text>
+      <motion.circle cx="302" cy="26" r="5" fill="#A9822F" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1.1 }} />
+      <line x1="16" y1="160" x2="304" y2="160" stroke="rgba(35,42,36,0.15)" />
+      <text x="20" y="182" fill="rgba(35,42,36,0.45)" fontSize="10">Net worth projection with a plan</text>
     </svg>
   );
 }
@@ -49,11 +49,11 @@ function BarsUp() {
         <motion.rect key={i} x={26 + i * 40} width="26" rx="6" fill={i === bars.length - 1 ? 'url(#gGold)' : 'url(#gEm2)'}
           initial={{ height: 0, y: 160 }} animate={{ height: h, y: 160 - h }} transition={{ duration: 0.8, ease: EASE, delay: i * 0.07 }} />
       ))}
-      <line x1="16" y1="160" x2="304" y2="160" stroke="rgba(255,255,255,0.15)" />
-      <text x="26" y="182" fill="rgba(245,248,246,0.4)" fontSize="10">Revenue, quarter over quarter</text>
+      <line x1="16" y1="160" x2="304" y2="160" stroke="rgba(35,42,36,0.15)" />
+      <text x="26" y="182" fill="rgba(35,42,36,0.45)" fontSize="10">Revenue, quarter over quarter</text>
       <defs>
-        <linearGradient id="gEm2" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stopColor="#0B795B" /><stop offset="100%" stopColor="#34D6A6" /></linearGradient>
-        <linearGradient id="gGold" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stopColor="#A8863F" /><stop offset="100%" stopColor="#E7C983" /></linearGradient>
+        <linearGradient id="gEm2" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stopColor="#174A3C" /><stop offset="100%" stopColor="#2F6B57" /></linearGradient>
+        <linearGradient id="gGold" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stopColor="#8A6820" /><stop offset="100%" stopColor="#C29B4B" /></linearGradient>
       </defs>
     </svg>
   );
@@ -62,13 +62,13 @@ function Wave() {
   return (
     <svg viewBox="0 0 320 190" className="w-full">
       <motion.path d="M16,120 C 50,60 80,60 110,105 S 170,160 200,110 S 260,55 304,80"
-        fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="2.5" strokeDasharray="5 7"
+        fill="none" stroke="rgba(35,42,36,0.2)" strokeWidth="2.5" strokeDasharray="5 7"
         initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1 }} />
       <motion.path d="M16,105 C 60,88 100,86 140,92 S 240,100 304,88"
-        fill="none" stroke="#34D6A6" strokeWidth="3" strokeLinecap="round"
+        fill="none" stroke="#1E5B4A" strokeWidth="3" strokeLinecap="round"
         initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.2, ease: EASE, delay: 0.15 }} />
-      <line x1="16" y1="160" x2="304" y2="160" stroke="rgba(255,255,255,0.15)" />
-      <text x="16" y="182" fill="rgba(245,248,246,0.4)" fontSize="10">Cash flow — before &amp; after smoothing</text>
+      <line x1="16" y1="160" x2="304" y2="160" stroke="rgba(35,42,36,0.15)" />
+      <text x="16" y="182" fill="rgba(35,42,36,0.45)" fontSize="10">Cash flow — before &amp; after smoothing</text>
     </svg>
   );
 }

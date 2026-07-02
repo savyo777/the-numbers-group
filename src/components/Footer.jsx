@@ -22,7 +22,7 @@ export default function Footer() {
           <div className="lg:col-span-4">
             <div className="flex items-center gap-2.5">
               <span className="grid h-9 w-9 place-items-center rounded-xl bg-emerald/15 ring-1 ring-emerald/30">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 18V7l7 7V7" stroke="#34D6A6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /><circle cx="18" cy="8" r="1.6" fill="#C9A96A" /></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 18V7l7 7V7" stroke="#1E5B4A" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /><circle cx="18" cy="8" r="1.6" fill="#A9822F" /></svg>
               </span>
               <span className="font-display text-lg font-semibold text-paper">The Numbers Group</span>
             </div>

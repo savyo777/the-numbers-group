@@ -33,8 +33,8 @@ export default function Loader() {
           <div className="flex items-center gap-3">
             <span className="grid h-11 w-11 place-items-center rounded-xl bg-emerald/15 ring-1 ring-emerald/30">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M6 18V7l7 7V7" stroke="#34D6A6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-                <circle cx="18" cy="8" r="1.6" fill="#C9A96A" />
+                <path d="M6 18V7l7 7V7" stroke="#1E5B4A" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="18" cy="8" r="1.6" fill="#A9822F" />
               </svg>
             </span>
             <span className="font-display text-xl font-semibold text-paper">The Numbers Group</span>

@@ -13,7 +13,7 @@ export default function TrustBar() {
           <div className="flex flex-col items-center justify-between gap-8 lg:flex-row">
             <div className="flex items-center gap-3">
               <span className="flex gap-0.5">
-                {[...Array(5)].map((_, k) => <Star key={k} size={16} className="text-gold" fill="#C9A96A" strokeWidth={0} />)}
+                {[...Array(5)].map((_, k) => <Star key={k} size={16} className="text-gold" fill="#A9822F" strokeWidth={0} />)}
               </span>
               <p className="text-sm text-paper/70">
                 <span className="font-semibold text-paper">{business.rating}</span> on Google · every one of our{' '}

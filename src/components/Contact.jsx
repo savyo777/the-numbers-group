@@ -56,7 +56,7 @@ export default function Contact() {
           </Reveal>
           <Reveal delay={0.2}>
             <div className="mt-8 overflow-hidden rounded-2xl border border-white/10">
-              <iframe title={`Map to ${business.name}`} src={mapsSrc} className="h-56 w-full" style={{ filter: 'invert(0.92) hue-rotate(160deg) saturate(0.7) contrast(0.95)' }} loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
+              <iframe title={`Map to ${business.name}`} src={mapsSrc} className="h-56 w-full" style={{ filter: 'grayscale(0.15) sepia(0.08)' }} loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
             </div>
           </Reveal>
         </div>

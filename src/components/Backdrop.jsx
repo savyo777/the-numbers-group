@@ -39,18 +39,17 @@ export default function Backdrop() {
   const { scrollY } = useScroll();
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden>
-      {/* faint ledger rules */}
+      {/* real-ledger-paper rules: green horizontal lines + terracotta margin line */}
       <div
-        className="absolute inset-0 opacity-[0.05]"
+        className="absolute inset-0 opacity-[0.07]"
         style={{
           backgroundImage:
-            'repeating-linear-gradient(to bottom, transparent 0, transparent 47px, rgba(52,214,166,0.5) 48px), linear-gradient(to right, transparent 0, transparent calc(8% - 1px), rgba(201,169,106,0.45) 8%, transparent calc(8% + 1px))',
+            'repeating-linear-gradient(to bottom, transparent 0, transparent 47px, rgba(30,91,74,0.55) 48px), linear-gradient(to right, transparent 0, transparent calc(7% - 1px), rgba(176,85,60,0.6) 7%, transparent calc(7% + 1px))',
         }}
       />
-      {/* soft static color pools (subtle — the motion now comes from the glyphs) */}
-      <div className="absolute -left-40 top-[6%] h-[38rem] w-[38rem] rounded-full bg-emerald/12 blur-[140px]" />
+      {/* soft warm pools (very subtle — the motion comes from the glyphs) */}
+      <div className="absolute -left-40 top-[6%] h-[38rem] w-[38rem] rounded-full bg-emerald/5 blur-[140px]" />
       <div className="absolute right-[-10%] top-[42%] h-[34rem] w-[34rem] rounded-full bg-gold/8 blur-[150px]" />
-      <div className="absolute bottom-[-12%] left-[24%] h-[36rem] w-[36rem] rounded-full bg-emerald-deep/12 blur-[150px]" />
       {/* parallax ledger glyphs */}
       {GLYPHS.map((g, i) => (
         <Glyph key={i} g={g} scrollY={scrollY} />

@@ -3,6 +3,7 @@ import { ArrowRight, CalendarCheck, Star, TrendingUp, ShieldCheck } from 'lucide
 import { business } from '../lib/data';
 import Magnetic from './ui/Magnetic';
 import AnimatedCounter from './ui/AnimatedCounter';
+import Squiggle from './ui/Squiggle';
 
 const EASE = [0.22, 0.7, 0.2, 1];
 
@@ -20,7 +21,7 @@ export default function Hero() {
   const p3y = useTransform(smy, [-0.5, 0.5], [24, -24]);
   const glowX = useTransform(smx, [-0.5, 0.5], ['32%', '68%']);
   const glowY = useTransform(smy, [-0.5, 0.5], ['30%', '70%']);
-  const glow = useTransform([glowX, glowY], ([x, y]) => `radial-gradient(600px circle at ${x} ${y}, rgba(15,157,118,0.12), transparent 65%)`);
+  const glow = useTransform([glowX, glowY], ([x, y]) => `radial-gradient(600px circle at ${x} ${y}, rgba(30,91,74,0.07), transparent 65%)`);
 
   const onMove = (e) => {
     const r = e.currentTarget.getBoundingClientRect();
@@ -30,10 +31,9 @@ export default function Hero() {
 
   return (
     <section id="top" onMouseMove={onMove} className="relative min-h-[100svh] w-full overflow-hidden">
-      {/* gradient mesh (transparent to the ledger-glyph backdrop behind) */}
-      <div className="pointer-events-none absolute -left-40 top-[-12%] h-[42rem] w-[42rem] rounded-full bg-emerald/25 blur-[130px] animate-aurora" />
-      <div className="pointer-events-none absolute right-[-12%] top-[8%] h-[38rem] w-[38rem] rounded-full bg-gold/12 blur-[140px] animate-aurora2" />
-      <div className="pointer-events-none absolute bottom-[-22%] left-[28%] h-[38rem] w-[38rem] rounded-full bg-emerald-deep/25 blur-[150px] animate-aurora" />
+      {/* soft warm washes (quiet — the paper + glyphs carry the mood now) */}
+      <div className="pointer-events-none absolute -left-40 top-[-12%] h-[42rem] w-[42rem] rounded-full bg-emerald/8 blur-[130px] animate-aurora" />
+      <div className="pointer-events-none absolute right-[-12%] top-[8%] h-[38rem] w-[38rem] rounded-full bg-gold/10 blur-[140px] animate-aurora2" />
       <div className="absolute inset-0 bg-grid-dark opacity-60 [background-size:60px_60px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_74%)]" />
       <motion.div style={{ background: glow }} className="pointer-events-none absolute inset-0" />
 
@@ -43,16 +43,17 @@ export default function Hero() {
           <motion.span initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: EASE, delay: 0.15 }}
             className="inline-flex items-center gap-2.5 rounded-full glass px-4 py-2 text-sm text-paper/80">
             <span className="flex items-center gap-1 text-gold">
-              {[...Array(5)].map((_, k) => <Star key={k} size={12} fill="#C9A96A" strokeWidth={0} />)}
+              {[...Array(5)].map((_, k) => <Star key={k} size={12} fill="#A9822F" strokeWidth={0} />)}
             </span>
             <span className="font-medium text-paper">{business.rating}</span>
             <span className="text-paper/50">· {business.reviews} reviews · Milton CPA</span>
           </motion.span>
 
-          <h1 className="mt-7 font-display text-[clamp(3rem,8vw,6.5rem)] font-semibold leading-[0.92] tracking-tightest">
+          <h1 className="mt-7 font-display text-[clamp(3rem,8vw,6.5rem)] font-medium leading-[0.95] tracking-tightest">
             {[['Precision.', 'text-paper'], ['Trust.', 'text-emerald-gold'], ['Growth.', 'text-paper']].map(([w, c], i) => (
-              <motion.span key={w} initial={{ opacity: 0, y: 44 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: EASE, delay: 0.28 + i * 0.12 }} className={`block ${c}`}>
+              <motion.span key={w} initial={{ opacity: 0, y: 44 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: EASE, delay: 0.28 + i * 0.12 }} className={`block w-fit ${c}`}>
                 {w}
+                {w === 'Growth.' && <Squiggle className="-mt-2 block h-3 w-full" delay={1.05} />}
               </motion.span>
             ))}
           </h1>
@@ -100,11 +101,11 @@ export default function Hero() {
               <svg viewBox="0 0 300 80" className="mt-5 w-full" preserveAspectRatio="none">
                 <defs>
                   <linearGradient id="spark" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#34D6A6" stopOpacity="0.35" />
-                    <stop offset="100%" stopColor="#34D6A6" stopOpacity="0" />
+                    <stop offset="0%" stopColor="#1E5B4A" stopOpacity="0.35" />
+                    <stop offset="100%" stopColor="#1E5B4A" stopOpacity="0" />
                   </linearGradient>
                 </defs>
-                <polyline points="0,64 40,58 80,60 120,44 160,48 200,30 240,26 300,8" fill="none" stroke="#34D6A6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                <polyline points="0,64 40,58 80,60 120,44 160,48 200,30 240,26 300,8" fill="none" stroke="#1E5B4A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                 <polygon points="0,64 40,58 80,60 120,44 160,48 200,30 240,26 300,8 300,80 0,80" fill="url(#spark)" />
               </svg>
             </div>
@@ -114,7 +115,7 @@ export default function Hero() {
           <motion.div style={{ x: p2x, y: p2y }} initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: EASE, delay: 0.7 }}
             className="absolute right-2 top-2 w-52">
             <div className="animate-floaty rounded-2xl glass-strong p-5 shadow-glass" style={{ animationDelay: '-2s' }}>
-              <div className="flex gap-0.5 text-gold">{[...Array(5)].map((_, k) => <Star key={k} size={15} fill="#C9A96A" strokeWidth={0} />)}</div>
+              <div className="flex gap-0.5 text-gold">{[...Array(5)].map((_, k) => <Star key={k} size={15} fill="#A9822F" strokeWidth={0} />)}</div>
               <p className="mt-2 font-display text-2xl font-semibold text-paper">5.0 rating</p>
               <p className="text-xs text-paper/45">33 verified Google reviews</p>
             </div>
@@ -126,8 +127,8 @@ export default function Hero() {
             <div className="animate-floaty flex items-center gap-4 rounded-2xl glass-strong p-5 shadow-glass" style={{ animationDelay: '-4s' }}>
               <div className="relative h-16 w-16 shrink-0">
                 <svg viewBox="0 0 36 36" className="h-16 w-16 -rotate-90">
-                  <circle cx="18" cy="18" r="15.5" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="3" />
-                  <circle cx="18" cy="18" r="15.5" fill="none" stroke="#0F9D76" strokeWidth="3" strokeLinecap="round" strokeDasharray="97.4" strokeDashoffset="20" />
+                  <circle cx="18" cy="18" r="15.5" fill="none" stroke="rgba(35,42,36,0.10)" strokeWidth="3" />
+                  <circle cx="18" cy="18" r="15.5" fill="none" stroke="#1E5B4A" strokeWidth="3" strokeLinecap="round" strokeDasharray="97.4" strokeDashoffset="20" />
                 </svg>
                 <span className="absolute inset-0 grid place-items-center font-display text-sm font-semibold text-paper">98%</span>
               </div>

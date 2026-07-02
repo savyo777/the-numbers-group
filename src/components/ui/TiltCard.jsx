@@ -14,7 +14,7 @@ export default function TiltCard({ children, className = '', max = 7 }) {
   const glareY = useTransform(sy, [-0.5, 0.5], ['0%', '100%']);
   const glare = useTransform(
     [glareX, glareY],
-    ([gx, gy]) => `radial-gradient(220px circle at ${gx} ${gy}, rgba(52,214,166,0.16), transparent 60%)`
+    ([gx, gy]) => `radial-gradient(220px circle at ${gx} ${gy}, rgba(30,91,74,0.08), transparent 60%)`
   );
 
   const move = (e) => {

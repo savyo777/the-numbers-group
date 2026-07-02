@@ -55,12 +55,13 @@ export default function LedgerScene() {
     const cam = new THREE.PerspectiveCamera(45, 1, 0.1, 60);
     cam.position.z = 7;
 
-    // --- crystal: fresnel glass core
+    // --- crystal: ink-wash fresnel core (normal blending — reads on light paper
+    //     like a draftsman's rendering, not a neon hologram)
     const uniforms = { uGold: { value: 0.2 } };
     const coreMat = new THREE.ShaderMaterial({
       transparent: true,
       depthWrite: false,
-      blending: THREE.AdditiveBlending,
+      blending: THREE.NormalBlending,
       uniforms,
       vertexShader: `
         varying vec3 vN; varying vec3 vV;
@@ -74,21 +75,20 @@ export default function LedgerScene() {
         precision mediump float;
         varying vec3 vN; varying vec3 vV; uniform float uGold;
         void main(){
-          float f = pow(1.0 - max(dot(vN, vV), 0.0), 2.4);
-          vec3 emerald = vec3(0.20, 0.84, 0.65);
-          vec3 gold    = vec3(0.91, 0.79, 0.45);
-          vec3 rim  = mix(emerald, gold, uGold);
-          vec3 core = mix(vec3(0.02, 0.10, 0.08), vec3(0.10, 0.08, 0.03), uGold);
-          gl_FragColor = vec4(mix(core, rim, f), f * 0.85 + 0.05);
+          float f = pow(1.0 - max(dot(vN, vV), 0.0), 2.2);
+          vec3 green = vec3(0.118, 0.357, 0.290);
+          vec3 brass = vec3(0.588, 0.478, 0.204);
+          vec3 rim = mix(green, brass, uGold);
+          gl_FragColor = vec4(rim, f * 0.5 + 0.03);
         }`,
     });
     const crystal = new THREE.Mesh(new THREE.IcosahedronGeometry(1.5, 1), coreMat);
     scene.add(crystal);
 
-    // wireframe shell for the "ledger lattice" structure
+    // wireframe shell — the "ledger lattice", drawn like a technical blueprint
     const wireMat = new THREE.MeshBasicMaterial({
-      color: 0x34d6a6, wireframe: true, transparent: true, opacity: 0.28,
-      blending: THREE.AdditiveBlending, depthWrite: false,
+      color: 0x1e5b4a, wireframe: true, transparent: true, opacity: 0.3,
+      blending: THREE.NormalBlending, depthWrite: false,
     });
     const shell = new THREE.Mesh(new THREE.IcosahedronGeometry(1.78, 1), wireMat);
     scene.add(shell);
@@ -97,8 +97,8 @@ export default function LedgerScene() {
     const N = 380;
     const pos = new Float32Array(N * 3);
     const col = new Float32Array(N * 3);
-    const cEm = new THREE.Color(0x34d6a6);
-    const cGd = new THREE.Color(0xe7c983);
+    const cEm = new THREE.Color(0x1e5b4a);
+    const cGd = new THREE.Color(0xa9822f);
     for (let i = 0; i < N; i++) {
       const a = (i / N) * Math.PI * 2;
       const r = 2.5 + (i % 7) * 0.14 + Math.sin(i * 12.9898) * 0.18;
@@ -112,8 +112,8 @@ export default function LedgerScene() {
     pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
     pGeo.setAttribute('color', new THREE.BufferAttribute(col, 3));
     const points = new THREE.Points(pGeo, new THREE.PointsMaterial({
-      size: 0.035, vertexColors: true, transparent: true, opacity: 0.75,
-      blending: THREE.AdditiveBlending, depthWrite: false, sizeAttenuation: true,
+      size: 0.032, vertexColors: true, transparent: true, opacity: 0.5,
+      blending: THREE.NormalBlending, depthWrite: false, sizeAttenuation: true,
     }));
     scene.add(points);
 

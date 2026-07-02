@@ -5,6 +5,7 @@ import Reveal, { RevealGroup, RevealItem } from './ui/Reveal';
 import TiltCard from './ui/TiltCard';
 import Magnetic from './ui/Magnetic';
 import { values, yearTimeline } from '../lib/data';
+import aboutPhoto from '../assets/about-team.jpg';
 
 const bars = [38, 52, 46, 64, 58, 78, 92];
 
@@ -17,33 +18,36 @@ export default function About() {
         <div className="grid items-center gap-16 lg:grid-cols-2">
           <Reveal>
             <div className="relative">
-              <div className="pointer-events-none absolute -inset-6 rounded-[2.5rem] bg-gradient-to-tr from-emerald/15 to-gold/15 blur-2xl" />
-              <div className="grad-border relative overflow-hidden rounded-[2rem] glass-strong p-8 shadow-lift">
+              {/* real people, real paper — the human anchor of the page.
+                  VERIFY: stock photo; swap for the firm's own office/team photo when provided. */}
+              <div className="relative overflow-hidden rounded-[2rem] border border-paper/10 shadow-lift">
+                <img
+                  src={aboutPhoto}
+                  alt="Advisors reviewing financial documents together at a desk"
+                  width="1200" height="800"
+                  className="h-[26rem] w-full object-cover md:h-[30rem]"
+                  loading="lazy" decoding="async"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-emerald-dark/25 via-transparent to-transparent" />
+              </div>
+
+              {/* floating mini-chart card */}
+              <div className="glass-strong absolute -bottom-8 -right-3 w-56 rounded-2xl p-5 shadow-glass sm:right-6">
                 <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-xs uppercase tracking-wider text-paper/45">Your financial year</p>
-                    <p className="font-display text-2xl font-semibold text-paper">In focus</p>
-                  </div>
-                  <span className="rounded-full bg-emerald/15 px-3 py-1 text-xs font-semibold text-emerald-light">On track</span>
+                  <p className="text-[11px] uppercase tracking-wider text-paper/50">Your year</p>
+                  <span className="rounded-full bg-emerald/10 px-2 py-0.5 text-[10px] font-semibold text-emerald">On track</span>
                 </div>
-                <div className="mt-8 flex h-40 items-end gap-3">
+                <div className="mt-3 flex h-16 items-end gap-1.5">
                   {bars.map((h, i) => (
                     <motion.div key={i} initial={{ height: 0 }} whileInView={{ height: `${h}%` }} viewport={{ once: true }}
                       transition={{ duration: 0.9, ease: [0.22, 0.7, 0.2, 1], delay: 0.08 * i }}
-                      className="flex-1 rounded-t-lg bg-gradient-to-t from-emerald-deep to-emerald-light" />
-                  ))}
-                </div>
-                <div className="mt-6 grid grid-cols-3 gap-3 border-t border-white/10 pt-6">
-                  {[['Growth', '+24%'], ['Deductions', 'Maxed'], ['Filing', 'On time']].map(([k, v]) => (
-                    <div key={k}><p className="text-xs text-paper/45">{k}</p><p className="font-display text-lg font-semibold text-emerald-light">{v}</p></div>
+                      className="flex-1 rounded-t bg-gradient-to-t from-emerald-deep to-emerald-light" />
                   ))}
                 </div>
               </div>
-              <div className="animate-floaty absolute -right-4 -top-4 rounded-2xl glass-strong px-4 py-2.5 shadow-glass" style={{ animationDelay: '-1.5s' }}>
-                <p className="flex items-center gap-1.5 text-sm font-medium text-paper"><Check size={15} className="text-emerald-light" /> CRA filed</p>
-              </div>
-              <div className="animate-floaty absolute -bottom-4 left-6 rounded-2xl glass-strong px-4 py-2.5 shadow-glass" style={{ animationDelay: '-3.5s' }}>
-                <p className="text-sm font-medium text-gold-grad">Fully optimized</p>
+
+              <div className="animate-floaty absolute -top-4 left-6 rounded-2xl glass-strong px-4 py-2.5 shadow-glass" style={{ animationDelay: '-1.5s' }}>
+                <p className="flex items-center gap-1.5 text-sm font-medium text-paper"><Check size={15} className="text-emerald" /> CRA filed</p>
               </div>
             </div>
           </Reveal>
