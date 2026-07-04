@@ -7,7 +7,7 @@ import { trustStats, trustMarquee, business } from '../lib/data';
    rating + service breadth carry this section. VERIFY: years & retention figures. */
 export default function TrustBar() {
   return (
-    <section className="relative border-y border-white/5 bg-ink-800/60 py-10 backdrop-blur-sm">
+    <section className="relative border-y border-white/5 bg-ink-800/80 py-10">
       <div className="max-shell container-px">
         <Reveal>
           <div className="flex flex-col items-center justify-between gap-8 lg:flex-row">

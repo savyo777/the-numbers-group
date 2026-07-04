@@ -21,9 +21,21 @@ const GLYPHS = [
   ['%',  '86%', 690,  11, -0.055,  6, 'text-paper'],
 ];
 
-function Glyph({ g, scrollY }) {
+function Glyph({ g, scrollY, isMobile }) {
   const [char, left, top, size, speed, rot, color] = g;
-  const y = useTransform(scrollY, (v) => v * speed);
+  const y = useTransform(scrollY, (v) => (isMobile ? 0 : v * speed));
+  // Phones: static, smaller glyphs — no per-scroll transform work on 11 layers.
+  if (isMobile) {
+    return (
+      <span
+        aria-hidden
+        style={{ left, top: `${top}vh`, transform: `rotate(${rot}deg)`, fontSize: `${size * 0.55}rem` }}
+        className={`absolute select-none font-display font-semibold leading-none ${color} opacity-[0.05]`}
+      >
+        {char}
+      </span>
+    );
+  }
   return (
     <motion.span
       aria-hidden
@@ -37,6 +49,8 @@ function Glyph({ g, scrollY }) {
 
 export default function Backdrop() {
   const { scrollY } = useScroll();
+  const isMobile = typeof window !== 'undefined' && matchMedia('(max-width: 767px)').matches;
+  const glyphs = isMobile ? GLYPHS.filter((_, i) => i % 2 === 0) : GLYPHS;
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden>
       {/* real-ledger-paper rules: green horizontal lines + terracotta margin line */}
@@ -50,9 +64,9 @@ export default function Backdrop() {
       {/* soft warm pools (very subtle — the motion comes from the glyphs) */}
       <div className="absolute -left-40 top-[6%] h-[38rem] w-[38rem] rounded-full bg-emerald/5 blur-[140px]" />
       <div className="absolute right-[-10%] top-[42%] h-[34rem] w-[34rem] rounded-full bg-gold/8 blur-[150px]" />
-      {/* parallax ledger glyphs */}
-      {GLYPHS.map((g, i) => (
-        <Glyph key={i} g={g} scrollY={scrollY} />
+      {/* parallax ledger glyphs (static + halved on phones) */}
+      {glyphs.map((g, i) => (
+        <Glyph key={i} g={g} scrollY={scrollY} isMobile={isMobile} />
       ))}
     </div>
   );

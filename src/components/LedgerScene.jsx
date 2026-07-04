@@ -40,6 +40,13 @@ export default function LedgerScene() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+    // Phones: skip WebGL entirely. A fixed full-screen canvas + iOS URL-bar
+    // resize thrash + backdrop-filter compositing is the classic "glitches on
+    // my phone" combo — small screens get the ledger-paper look, no 3D.
+    if (matchMedia('(max-width: 767px)').matches) {
+      canvas.style.display = 'none';
+      return;
+    }
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     let renderer;
@@ -133,9 +140,16 @@ export default function LedgerScene() {
       mx = (e.clientX / innerWidth - 0.5);
       my = (e.clientY / innerHeight - 0.5);
     };
+    let lastW = 0, lastH = 0;
     const resize = () => {
-      renderer.setSize(innerWidth, innerHeight, false);
-      cam.aspect = innerWidth / innerHeight;
+      const w = innerWidth, h = innerHeight;
+      if (!w || !h) return;
+      // Ignore small height-only changes (mobile/tablet URL-bar show/hide fires
+      // resize during scroll — re-sizing the renderer every tick = visible glitching).
+      if (w === lastW && Math.abs(h - lastH) < 120) return;
+      lastW = w; lastH = h;
+      renderer.setSize(w, h, false);
+      cam.aspect = w / h;
       cam.updateProjectionMatrix();
     };
     resize();
@@ -168,6 +182,7 @@ export default function LedgerScene() {
       if (document.hidden) return;
       if (t - last < 32) return; // 30fps cap
       last = t;
+      if (canvas.width === 0) resize(); // recover from a 0-size init race
       const s = t * 0.001;
       curP += (targetP - curP) * 0.07; // eased scroll follow
       smx += (mx - smx) * 0.05;
